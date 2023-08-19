@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { GlobalStyle } from 'components/GlobalStyle';
 import { SearchBar } from './Searchbar/Searchbar';
-import { LoadMoreBtn } from './Button/Button';
+import { LoadMoreBtn } from './Button/LoadMoreBtn';
 import { ImageGallery } from './ImageGallery/ImageGallery';
 import { getImages } from './API';
 
@@ -30,11 +30,13 @@ export class App extends Component {
       prevState.page !== this.state.page
     ) {
       const actualQuery = this.state.query.split('/');
-      const images = await getImages({
+      const newImages = await getImages({
         query: actualQuery[1],
         page: this.state.page,
       });
-      this.setState({ images });
+
+      const updatedImages = this.state.images.concat(newImages);
+      this.setState({ images: updatedImages });
     }
   }
 

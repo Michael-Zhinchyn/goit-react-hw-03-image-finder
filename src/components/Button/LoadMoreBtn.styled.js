@@ -1,25 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledSearchForm = styled.form`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const StyledSearchInput = styled.input`
-  padding-left: 16px;
-  background-color: #23272f;
-  width: 280px;
-  height: 45px;
-  border: 1px solid rgb(20 158 202);
-  border-radius: 4px;
-  color: white;
-  font-size: 19px;
-  font-weight: 500;
-  outline: none;
-`;
-
-export const StyledSearchBtn = styled.button`
+export const StyledLoadMoreBtn = styled.button`
   box-sizing: border-box;
   width: 127px;
   height: 45px;
