@@ -55,7 +55,6 @@ export class App extends Component {
           <LoadMoreBtn onClick={this.handleLoadMore} />
         )}
         {this.state.isLoading && <Loader />}
-
         <GlobalStyle />
       </div>
     );
