@@ -14,6 +14,9 @@ const customStyles = {
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
     color: 'black',
+    maxWidth: '90vw',
+    maxHeight: '80vh',
+    overflow: 'auto',
   },
 };
 
