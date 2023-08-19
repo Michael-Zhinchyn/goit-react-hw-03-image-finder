@@ -1,16 +1,13 @@
 import styled, { keyframes } from 'styled-components';
 import { BiLogoReact } from 'react-icons/bi';
 
-export const FooterWrapper = styled.div`
+export const LogoWrapper = styled.div`
   position: fixed;
-  bottom: 10px;
-  left: 0;
-  right: 0;
+  top: 12px;
+  left: 12px;
+  right: 12px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: auto;
-  height: 40px;
+  justify-content: end;
 `;
 
 const rotate = keyframes`
@@ -23,8 +20,5 @@ const rotate = keyframes`
 `;
 
 export const RotatingIcon = styled(BiLogoReact)`
-  position: absolute;
-  right: 5px;
-  transform: translateX(-50%);
   animation: ${rotate} 5s linear infinite;
 `;
