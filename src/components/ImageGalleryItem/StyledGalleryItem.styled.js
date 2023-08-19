@@ -14,3 +14,9 @@ export const StyledItemBottomWrapper = styled.div`
   margin-top: 14px;
   justify-content: space-between;
 `;
+
+export const StyledModalImg = styled.img`
+  max-width: 100%;
+  max-height: 70vh;
+  margin-bottom: 10px;
+`;

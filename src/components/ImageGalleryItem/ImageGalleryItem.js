@@ -2,6 +2,7 @@ import Modal from 'react-modal';
 import {
   StyledImageItem,
   StyledItemBottomWrapper,
+  StyledModalImg,
 } from './StyledGalleryItem.styled';
 import { Component } from 'react';
 
@@ -41,7 +42,7 @@ export class ImageGalleryItem extends Component {
           style={customStyles}
           contentLabel="Example Modal"
         >
-          <img src={largeImageURL} alt={tags}></img>
+          <StyledModalImg src={largeImageURL} alt={tags}></StyledModalImg>
           <StyledItemBottomWrapper>
             <p>{tags}</p>
             <button onClick={this.closeModal}>close</button>
