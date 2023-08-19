@@ -4,6 +4,7 @@ import { SearchBar } from './Searchbar/Searchbar';
 import { LoadMoreBtn } from './Button/LoadMoreBtn';
 import { ImageGallery } from './ImageGallery/ImageGallery';
 import { getImages } from './API';
+import { Footer } from './Footer/Footer';
 
 export class App extends Component {
   state = {
@@ -48,6 +49,7 @@ export class App extends Component {
         {this.state.images.length > 0 && (
           <LoadMoreBtn onClick={this.handleLoadMore} />
         )}
+        <Footer />
         <GlobalStyle />
       </div>
     );
