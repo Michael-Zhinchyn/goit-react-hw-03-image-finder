@@ -45,7 +45,9 @@ export class App extends Component {
       <div>
         <SearchBar onSubmit={this.changeQuery} />
         <ImageGallery images={this.state.images} />
-        <LoadMoreBtn onClick={this.handleLoadMore} />
+        {this.state.images.length > 0 && (
+          <LoadMoreBtn onClick={this.handleLoadMore} />
+        )}
         <GlobalStyle />
       </div>
     );

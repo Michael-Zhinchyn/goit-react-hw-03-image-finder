@@ -20,3 +20,9 @@ export const StyledLoadMoreBtn = styled.button`
     color: #23272f;
   }
 `;
+
+export const StyledButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  text-align: center;
+`;
