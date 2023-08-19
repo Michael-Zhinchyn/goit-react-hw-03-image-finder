@@ -3,7 +3,7 @@ import { BiLogoReact } from 'react-icons/bi';
 
 export const LogoWrapper = styled.div`
   position: fixed;
-  top: 12px;
+  top: 8px;
   left: 12px;
   right: 12px;
   display: flex;

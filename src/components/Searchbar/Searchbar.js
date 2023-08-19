@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { Report } from 'notiflix/build/notiflix-report-aio';
 import {
   StyledSearchInput,
   StyledSearchBtn,
@@ -14,7 +15,19 @@ export class SearchBar extends Component {
     evt.preventDefault();
 
     if (this.state.query.trim() === '') {
-      alert('на жаль Ви нічого не ввели для пошуку ');
+      Report.info(
+        'Ooops',
+        "Looks like You didn't enter anything for the search.",
+        'Okay',
+        {
+          svgSize: '42px',
+          messageMaxLength: 1923,
+          plainText: false,
+          color: 'green',
+          titleFontSize: '20px',
+          messageFontSize: '16px',
+        }
+      );
       return;
     }
 
