@@ -19,7 +19,7 @@ const customStyles = {
     color: 'black',
     maxWidth: '90vw',
     maxHeight: '80vh',
-    overflow: 'auto',
+    overflow: 'hidden',
   },
 };
 

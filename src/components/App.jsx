@@ -6,6 +6,7 @@ import { ImageGallery } from './ImageGallery/ImageGallery';
 import { getImages } from './API';
 import { Logo } from './Logo/Logo';
 import { Loader } from './Loader/Loader';
+import { ScrollToTopBtn } from './ScrollToTop/ScrollToTop';
 
 export class App extends Component {
   state = {
@@ -13,6 +14,8 @@ export class App extends Component {
     images: [],
     page: 1,
     isLoading: false,
+    hasMoreImages: true,
+    showScrollBtn: false,
   };
 
   changeQuery = newQuery => {
@@ -20,6 +23,7 @@ export class App extends Component {
       query: `${Date.now()}/${newQuery}`,
       images: [],
       page: 1,
+      hasMoreImages: true,
     });
   };
 
@@ -27,34 +31,68 @@ export class App extends Component {
     this.setState(prevState => ({ page: prevState.page + 1 }));
   };
 
+  componentDidMount() {
+    window.addEventListener('scroll', this.checkScrollPosition);
+  }
+
   async componentDidUpdate(prevProps, prevState) {
-    if (
-      prevState.query !== this.state.query ||
-      prevState.page !== this.state.page
-    ) {
-      const actualQuery = this.state.query.split('/');
-      this.setState({ isLoading: true });
-
-      const newImages = await getImages({
-        query: actualQuery[1],
-        page: this.state.page,
-      });
-
-      const updatedImages = this.state.images.concat(newImages);
-      this.setState({ images: updatedImages, isLoading: false });
+    const { query, page, images } = this.state;
+    if (prevState.query !== query || prevState.page !== page) {
+      this.loadImages();
     }
   }
 
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.checkScrollPosition);
+  }
+
+  checkScrollPosition = () => {
+    if (window.pageYOffset > 1000 && !this.state.showScrollBtn) {
+      this.setState({ showScrollBtn: true });
+    } else if (window.pageYOffset <= 1000 && this.state.showScrollBtn) {
+      this.setState({ showScrollBtn: false });
+    }
+  };
+
+  // Separated loading logic into its own function
+  loadImages = async () => {
+    const { query, page } = this.state;
+    const actualQuery = query.split('/');
+    this.setState({ isLoading: true });
+
+    const newImages = await getImages({
+      query: actualQuery[1],
+      page,
+    });
+
+    if (newImages.length < 20) {
+      this.setState({ hasMoreImages: false });
+    }
+
+    const updatedImages = this.state.images.concat(newImages);
+    this.setState({ images: updatedImages, isLoading: false });
+  };
+
   render() {
+    const { images, hasMoreImages, isLoading, showScrollBtn } = this.state;
+
     return (
       <div>
         <Logo />
         <SearchBar onSubmit={this.changeQuery} />
-        <ImageGallery images={this.state.images} />
-        {this.state.images.length > 0 && (
+        <ImageGallery images={images} />
+
+        {images.length > 0 && hasMoreImages && (
           <LoadMoreBtn onClick={this.handleLoadMore} />
         )}
-        {this.state.isLoading && <Loader />}
+
+        {isLoading && <Loader />}
+
+        {showScrollBtn && (
+          <ScrollToTopBtn
+            style={{ position: 'fixed', bottom: '10px', right: '10px' }}
+          />
+        )}
         <GlobalStyle />
       </div>
     );

@@ -19,7 +19,6 @@ export const StyledImageItem = styled.li`
 
 export const StyledItemBottomWrapper = styled.div`
   display: flex;
-  margin-top: 14px;
   justify-content: space-between;
   align-items: center;
 `;
@@ -27,7 +26,7 @@ export const StyledItemBottomWrapper = styled.div`
 export const StyledModalImg = styled.img`
   max-width: 100%;
   max-height: 70vh;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   border-radius: 6px;
 `;
 
