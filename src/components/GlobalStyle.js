@@ -4,7 +4,7 @@ import 'modern-normalize';
 export const GlobalStyle = createGlobalStyle`
 body {
   margin: 0;
-  padding: 50px;
+  padding: 20px;
   background-color: #23272f; 
   color: #fff;
   font-family: -apple-system, BlinkMacSystemFont, 'Roboto', 

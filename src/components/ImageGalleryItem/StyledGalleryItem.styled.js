@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const StyledImageItem = styled.li`
-  padding: 20px;
   margin: 10px;
   border-bottom: #7277be84 1px solid;
   border-top: #7277be82 1px solid;

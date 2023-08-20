@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const StyledSearchForm = styled.form`
   display: flex;
+  margin-top: 40px;
   justify-content: center;
   align-items: center;
 `;
@@ -9,7 +10,7 @@ export const StyledSearchForm = styled.form`
 export const StyledSearchInput = styled.input`
   padding-left: 16px;
   background-color: #23272f;
-  width: 280px;
+  width: 100%;
   height: 45px;
   border: 1px solid rgb(20 158 202);
   border-radius: 4px;

@@ -20,6 +20,9 @@ const customStyles = {
     maxWidth: '90vw',
     maxHeight: '80vh',
     overflow: 'hidden',
+    overlay: {
+      backgroundColor: 'rgba(0, 0, 0, 0.75) !important',
+    },
   },
 };
 

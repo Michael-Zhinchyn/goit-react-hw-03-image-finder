@@ -7,7 +7,7 @@ export const LogoWrapper = styled.div`
   left: 12px;
   right: 12px;
   display: flex;
-  justify-content: end;
+  justify-content: center;
 `;
 
 const rotate = keyframes`
