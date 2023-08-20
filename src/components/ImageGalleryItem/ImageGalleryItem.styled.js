@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const StyledImageItem = styled.li`
   margin: 10px;
-  padding: 15px;
+  padding: 18px;
   border-bottom: #7277be84 1px solid;
   border-top: #7277be82 1px solid;
   border-radius: 20px;
@@ -18,5 +18,5 @@ export const StyledImageItem = styled.li`
 `;
 
 export const StyledItemImg = styled.img`
-  border-radius: 6px;
+  border-radius: 8px;
 `;
