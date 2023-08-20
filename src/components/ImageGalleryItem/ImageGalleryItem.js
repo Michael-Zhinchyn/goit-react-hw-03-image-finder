@@ -5,7 +5,8 @@ import {
   StyledModalImg,
   StyledCloseButton,
   StyledImageTag,
-} from './StyledGalleryItem.styled';
+  StyledItemImg,
+} from './ImageGalleryItem.styled';
 import { Component } from 'react';
 
 const customStyles = {
@@ -16,13 +17,14 @@ const customStyles = {
     bottom: 'auto',
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
-    color: 'black',
+    color: 'white',
     maxWidth: '90vw',
     maxHeight: '80vh',
     overflow: 'hidden',
-    overlay: {
-      backgroundColor: 'rgba(0, 0, 0, 0.75) !important',
-    },
+    background: 'transparent',
+  },
+  overlay: {
+    backgroundColor: '#23272f',
   },
 };
 
@@ -40,7 +42,11 @@ export class ImageGalleryItem extends Component {
     const { webformatURL, tags, largeImageURL } = this.props;
     return (
       <StyledImageItem>
-        <img onClick={this.openModal} src={webformatURL} alt={tags}></img>
+        <StyledItemImg
+          onClick={this.openModal}
+          src={webformatURL}
+          alt={tags}
+        ></StyledItemImg>
         <Modal
           isOpen={this.state.isModalOpen}
           onRequestClose={this.closeModal}

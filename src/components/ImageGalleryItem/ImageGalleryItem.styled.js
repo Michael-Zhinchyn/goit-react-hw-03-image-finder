@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const StyledImageItem = styled.li`
   margin: 10px;
+  padding: 15px;
   border-bottom: #7277be84 1px solid;
   border-top: #7277be82 1px solid;
   border-radius: 20px;
@@ -16,6 +17,10 @@ export const StyledImageItem = styled.li`
   }
 `;
 
+export const StyledItemImg = styled.img`
+  border-radius: 6px;
+`;
+
 export const StyledItemBottomWrapper = styled.div`
   display: flex;
   justify-content: space-between;
@@ -26,7 +31,7 @@ export const StyledModalImg = styled.img`
   max-width: 100%;
   max-height: 70vh;
   margin-bottom: 8px;
-  border-radius: 6px;
+  border-radius: 4px;
 `;
 
 export const StyledCloseButton = styled.button`
