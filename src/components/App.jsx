@@ -18,6 +18,21 @@ export class App extends Component {
     showScrollBtn: false,
   };
 
+  componentDidMount() {
+    window.addEventListener('scroll', this.checkScrollPosition);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { query, page } = this.state;
+    if (prevState.query !== query || prevState.page !== page) {
+      this.loadImages();
+    }
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.checkScrollPosition);
+  }
+
   changeQuery = newQuery => {
     this.setState({
       query: `${Date.now()}/${newQuery}`,
@@ -31,46 +46,32 @@ export class App extends Component {
     this.setState(prevState => ({ page: prevState.page + 1 }));
   };
 
-  componentDidMount() {
-    window.addEventListener('scroll', this.checkScrollPosition);
-  }
-
-  async componentDidUpdate(prevProps, prevState) {
-    const { query, page, images } = this.state;
-    if (prevState.query !== query || prevState.page !== page) {
-      this.loadImages();
-    }
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('scroll', this.checkScrollPosition);
-  }
-
   checkScrollPosition = () => {
-    if (window.pageYOffset > 1000 && !this.state.showScrollBtn) {
-      this.setState({ showScrollBtn: true });
-    } else if (window.pageYOffset <= 1000 && this.state.showScrollBtn) {
-      this.setState({ showScrollBtn: false });
+    if (typeof window !== 'undefined') {
+      const offset = window.pageYOffset || 0;
+      const { showScrollBtn } = this.state;
+
+      if (offset > 1000 && !showScrollBtn) {
+        this.setState({ showScrollBtn: true });
+      } else if (offset <= 1000 && showScrollBtn) {
+        this.setState({ showScrollBtn: false });
+      }
     }
   };
 
-  // Separated loading logic into its own function
   loadImages = async () => {
     const { query, page } = this.state;
-    const actualQuery = query.split('/');
+    const actualQuery = query.split('/')[1];
+
     this.setState({ isLoading: true });
 
-    const newImages = await getImages({
-      query: actualQuery[1],
-      page,
-    });
+    const newImages = await getImages({ query: actualQuery, page });
 
-    if (newImages.length < 20) {
-      this.setState({ hasMoreImages: false });
-    }
-
-    const updatedImages = this.state.images.concat(newImages);
-    this.setState({ images: updatedImages, isLoading: false });
+    this.setState(prevState => ({
+      images: [...prevState.images, ...newImages],
+      hasMoreImages: newImages.length >= 20,
+      isLoading: false,
+    }));
   };
 
   render() {
@@ -81,13 +82,10 @@ export class App extends Component {
         <Logo />
         <SearchBar onSubmit={this.changeQuery} />
         <ImageGallery images={images} />
-
         {images.length > 0 && hasMoreImages && (
           <LoadMoreBtn onClick={this.handleLoadMore} />
         )}
-
         {isLoading && <Loader />}
-
         {showScrollBtn && (
           <ScrollToTopBtn
             style={{ position: 'fixed', bottom: '10px', right: '10px' }}
