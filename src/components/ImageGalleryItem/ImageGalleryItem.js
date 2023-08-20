@@ -21,7 +21,6 @@ export class ImageGalleryItem extends Component {
     return (
       <StyledImageItem>
         <StyledItemImg onClick={this.openModal} src={webformatURL} alt={tags} />
-
         <ImageModal
           isOpen={this.state.isModalOpen}
           onRequestClose={this.closeModal}

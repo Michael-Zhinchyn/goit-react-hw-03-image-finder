@@ -38,6 +38,18 @@ export class ImageModal extends Component {
     this.setState({ imageLoaded: true });
   };
 
+  componentDidUpdate(prevProps) {
+    if (this.props.isOpen && !prevProps.isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else if (!this.props.isOpen && prevProps.isOpen) {
+      document.body.style.overflow = 'auto';
+    }
+  }
+
+  componentWillUnmount() {
+    document.body.style.overflow = 'auto';
+  }
+
   render() {
     const { isOpen, onRequestClose, tags, largeImageURL } = this.props;
 
