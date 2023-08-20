@@ -3,6 +3,8 @@ import {
   StyledImageItem,
   StyledItemBottomWrapper,
   StyledModalImg,
+  StyledCloseButton,
+  StyledImageTag,
 } from './StyledGalleryItem.styled';
 import { Component } from 'react';
 
@@ -44,8 +46,10 @@ export class ImageGalleryItem extends Component {
         >
           <StyledModalImg src={largeImageURL} alt={tags}></StyledModalImg>
           <StyledItemBottomWrapper>
-            <p>{tags}</p>
-            <button onClick={this.closeModal}>close</button>
+            <StyledImageTag>{tags}</StyledImageTag>
+            <StyledCloseButton onClick={this.closeModal}>
+              close
+            </StyledCloseButton>
           </StyledItemBottomWrapper>
         </Modal>
       </StyledImageItem>
