@@ -38,7 +38,9 @@ export class ImageGalleryItem extends Component {
   };
 
   openModal = () => this.setState({ isModalOpen: true, imageLoaded: false });
+
   closeModal = () => this.setState({ isModalOpen: false, imageLoaded: false });
+
   handleImageLoad = () => this.setState({ imageLoaded: true });
 
   render() {
